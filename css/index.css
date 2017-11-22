@@ -167,3 +167,60 @@ table
 
 width:70%  !important;
 }
+ .main-menu {
+    
+       float: left !important;
+}
+ /*@media only screen and (max-width: 1220px)
+{
+.main-menu, .sub-menu {
+    display: block !important;
+   
+}
+
+.main-menu, .sub-menu {
+    
+    list-style: none !important;
+  
+}
+
+.main-menu, .sub-menu {
+    
+    margin: 0 !important;
+   
+}
+
+.main-menu, .sub-menu {
+  
+    padding: 0 !important;
+   
+}
+
+.main-menu, .sub-menu {
+   
+    font-size: 0!important;
+}
+  /*.main-menu {
+    
+       float: left !important;
+}  
+    
+.main-menu {
+    display: flex !important;
+   
+}
+.main-menu {
+        margin-top: -25px !important;
+    
+}
+.main-menu {
+    
+    opacity: 1  !important;
+   
+}
+.main-menu {
+    
+    left: 50%  !important;
+}
+
+}*/
