@@ -102,6 +102,7 @@
 <access origin="*://*.gstatic.com/*" subdomains="true" />
 <access origin="*://*.google.com/*" subdomains="true" />
 <access origin="*://*.googleusercontent.com/*" subdomains="true" />
+	<access origin="*://*.maps.google.com/*" subdomains="true" />
 
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
