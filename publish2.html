@@ -1,0 +1,103 @@
+
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+    <article>
+      <p>Finding your location: <span id="status">checking...</span></p>
+	 <form action="posted.html" >
+		
+		
+		<table>
+		<td>
+		<input style="width:100%" type="text" placeholder="دخل عنوان العرض" name="title">
+		<br>
+		<input style="width:100%" type="number" placeholder=" السعر بالدولار" name="price">
+		<br>
+		<input style="width:100%" type="date" placeholder=" تاريخ انتهاء البيع" name="lastdate">
+		<article><span id="status">checking...</span></p>
+		<input style="width:100%" type="input"  name="lat" id="lat">
+		<input style="width:100%" type="input"  name="lng" id="lng">
+		</article>
+		
+		</td>
+		</table>
+		<table>
+		<b style="float:right;">اضغط لترفيع الصورة</b>
+		<br>
+		<input style="float:right;" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" />
+		</table>
+		<br><br><br>
+		<table>
+		<a style="float:right;" href="https://nudlu.com/audio-recording.html">
+		اضغط هنا للتسجيل الصوتي
+		</a>
+		<input style="width:100%" type="text" placeholder="الصق رابط التسجيل" name="audio">
+		</table>
+		<br>
+		<table>
+		<a style="float:right;" href="https://nudlu.com/video-recording.html">
+		اضغط هنا للتصوير
+		</a>
+			<input type="text" style="width:100%" placeholder="الصق رابط التصوير" name="video">
+		</table>
+		<br>
+		
+		<br>
+		<input style="float:right;" type="submit">
+		
+		</form>
+    </article>
+<script>
+function success(position) {
+  var s = document.querySelector('#status');
+
+  if (s.className == 'success') {
+    // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back
+	
+    return;
+  }
+
+  s.innerHTML = "found you!";
+  s.className = 'success';
+
+  var mapcanvas = document.createElement('div');
+  mapcanvas.id = 'mapcanvas';
+  mapcanvas.style.height = '400px';
+  mapcanvas.style.width = '560px';
+
+  document.querySelector('article').appendChild(mapcanvas);
+
+  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  var myOptions = {
+    zoom: 15,
+    center: latlng,
+    mapTypeControl: false,
+    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+
+  var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:"You are here! (at least within a "+position.coords.accuracy+" meter radius)"
+  });
+ alert("OK "+position.coords.latitude+","+ position.coords.longitude);
+ document.getElementById("lat").value = position.coords.latitude;
+ document.getElementById("lng").value = position.coords.longitude;
+}
+
+function error(msg) {
+  var s = document.querySelector('#status');
+  s.innerHTML = typeof msg == 'string' ? msg : "failed";
+  s.className = 'fail';
+
+  // console.log(arguments);
+}
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
+
+} else {
+  error('not supported');
+}
+
+</script>
